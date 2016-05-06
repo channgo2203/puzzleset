@@ -76,7 +76,10 @@ let rec find_min_3subs findex lindex str str1 str2 str3 =
 				let leftmost = get_left_most s str1 str2 str3 in
 					let _ = printf "leftmost: (%s,%i)\n" leftmost (BatString.length leftmost) in 
 					let leftmost_index = find_left_most str (lindex + 1) leftmost in 
+					let _ = printf "leftmost_index: %i\n" leftmost_index in 
 						if (leftmost_index <> -1) then
+								let _ = printf "str: (%s,%i)\n" str (BatString.length str) in
+								let _ = printf "sub_leftmost_lindex: (%i,%i)\n" findex (leftmost_index + BatString.length leftmost) in
 								let sub_leftmost = BatString.sub str findex (leftmost_index + BatString.length leftmost) in
 									let _ = printf "sub_leftmost: (%s,%i)\n" sub_leftmost (BatString.length sub_leftmost) in 
 									let new_findex, new_lindex = rfind_3subs sub_leftmost str1 str2 str3 in
