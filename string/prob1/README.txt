@@ -14,12 +14,19 @@ Complexity: depend on the number of substrings which is O(n^2)
 2. Efficient solution
 
 - Find the first occurence of substrings containing str1, str2, and str3, called sub, 
-record the lenght of it, sub_len
-- Move forward from the last index of sub to the end of the string str, if one of 
-str1, str2, or str3 occurrs and matches with the leftmost substring in sub. Then add 
-the occurent substring and extra characters from the right most sub. And remove 
-the occurent substring and all other extra characters after left most matched substring. 
-After adding and removing characters, get the length of this new substring and compare with 
-sub_len and update min_len.
+record the lenght of it, sub_len (note, sub_len consists of the first index and the last 
+index, len = last index - fist index + 1)
+
+- (*) Find from the last index of sub to the end of str the first occurence of the left most 
+substring (str1, str2 or str3)
+
+- If there is a match, sub = sub new string from the fist index of sub to the last index 
+of the matching string. Find the last occurence of substring containing str1, str2, and 
+str3 in sub. Update sub = new matching substring. 
+
+- Compare the length of this new substring with sub_len, if it is smaller then update 
+sub_len. 
+
+- Go back to (*) 
 
 - Return sub_len  
