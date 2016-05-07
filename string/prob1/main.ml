@@ -78,13 +78,12 @@ let rec find_min_3subs findex lindex str str1 str2 str3 =
 					let leftmost_index = find_left_most str (lindex + 1) leftmost in 
 					let _ = printf "leftmost_index: %i\n" leftmost_index in 
 						if (leftmost_index <> -1) then
-								let _ = printf "str: (%s,%i)\n" str (BatString.length str) in
 								let _ = printf "sub_leftmost_lindex: (%i,%i)\n" findex (leftmost_index + BatString.length leftmost) in
-								let sub_leftmost = BatString.sub str findex (leftmost_index + BatString.length leftmost) in
+								let sub_leftmost = BatString.sub str findex (leftmost_index + BatString.length leftmost - findex) in
 									let _ = printf "sub_leftmost: (%s,%i)\n" sub_leftmost (BatString.length sub_leftmost) in 
 									let new_findex, new_lindex = rfind_3subs sub_leftmost str1 str2 str3 in
 										let _ = printf "sub_index: (%i,%i)\n" new_findex new_lindex in 
-											find_min_3subs new_findex new_lindex str str1 str2 str3
+											find_min_3subs (findex + new_findex) (findex + new_lindex) str str1 str2 str3
 						else
 							let _ = printf "sub_index: (%i,%i)\n" findex lindex in 
 								(findex,lindex)
@@ -104,7 +103,10 @@ let _ =
 					let str3 = Sys.argv.(4) in
 						let first_findex, first_lindex = find_3subs str str1 str2 str3 in
 							let findex, lindex = find_min_3subs first_findex first_lindex str str1 str2 str3 in 
-								printf "sub_index: (%i,%i)\n" findex lindex
+								let sub_string = get_3subs str findex lindex in 
+									match sub_string with
+									| None -> printf "Cannot find that substring\n"
+									| Some s -> printf "The shortest substring: (%s,%i)\n" s (BatString.length s)
 									
 							
 (* A test data 
