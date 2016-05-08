@@ -44,8 +44,13 @@ let print_lstr_index des str lindex =
 	printf "-------------------------------\n";
 	printf "%s\n" des;
 	
-	let lstr_opt = List.map lindex (fun x -> let fi,li = x in get_substring str fi li) in 
+	let lstr_opt = List.map lindex 
+		(fun x -> 
+			let fi,li = x in 
+				get_substring str fi li) 
+	in 
 		List.iter lstr_opt ~f: (fun s_opt -> match s_opt with | None -> printf "Invalid indices\n" | Some s -> printf "%s\n" s);
+	
 	printf "-------------------------------\n"
 
 (* print all strings in a list *)
