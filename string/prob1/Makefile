@@ -1,18 +1,11 @@
-export PP = camlp4o
-
-PPFLAGS = \
-	-I `ocamlfind -query batteries.pa_comprehension` pa_comprehension.cmo \
-	-I `ocamlfind -query batteries.pa_batteries` pa_batteries.cmo \
-	-I `ocamlfind -query batteries.pa_strings` pa_strings.cma \
-	-I `ocamlfind -query batteries.pa_where` pa_where.cmo
-
-SOURCES = 	main.ml 
+SOURCES = prob1.ml main.ml 
 RESULT = main
 
-PACKS = batteries
-CREATE_LIB = yes
+PACKS = batteries core
+CREATE_LIB = yes 
 
 YFLAGS = -v
+THREADS = yes
 
 all: native-code
 
