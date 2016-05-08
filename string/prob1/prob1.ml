@@ -208,7 +208,7 @@ let find_shortest_substring_lstr str list_strings =
 									
 							end
 						done;
-						(* remove all duplicate before return *)
+						(* remove all duplicates before return *)
 						List.dedup ~compare:(fun x y -> let x1,x2 = x in let y1,y2 = y in if (x1 = y1 && x2 = y2) then 0 
 							else if ((x1 < y1) || (x1 = y1 && x2 <= y2)) then -1 else 1) !lshortest_substr
 					end
