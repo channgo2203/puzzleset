@@ -20,8 +20,11 @@ let _ =
 					lstr := (Sys.argv.(i))::(!lstr) 
 				done;
 				
-				let lshortest_substr_index = find_shortest_substring_lstr str !lstr in 
-					if (lshortest_substr_index = [(0,-1)]) then begin 
+				let (n, lshortest_substr_index) = find_shortest_substrings str !lstr in 
+					if (lshortest_substr_index = [(0,-1)]) then begin
+						printf "-------------------------------\n";
+						printf "Number of substrings:\nAny substring\n";
+						printf "-------------------------------\n";
 						printf "-------------------------------\n";
 						printf "Shortest substrings indices:\n(0,0)\n";
 						printf "-------------------------------\n";
@@ -32,6 +35,9 @@ let _ =
 		  		end else if (lshortest_substr_index = [(-1,-1)]) then begin 
 						printf "Cannot find any substring\n"
 					end else begin 
+						printf "-------------------------------\n";
+						printf "Number of substrings:\n%i\n" n;
+						printf "-------------------------------\n";
 						print_lindex "Shortest substrings indices:" lshortest_substr_index;
 						print_lstr_index "Shortest substrings:" str lshortest_substr_index
 					end

@@ -1,32 +1,24 @@
-Find a shortest substring contains three given strings
+Find a shortest substring contains the given strings
 
-Problem: Given a string str and three other strings str1 str2 str3.
-Find a shortest substring of str that contains all str1, str2, and str3
+Problem: Given a string str and a list of strings lstr. 
+Find a shortest substring of str that contains all strings in lstr.
 
 1. Simple solution
 
 - Generate all substrings of str
-- For each substring, check that it contains str1, str2, and str3
+- For each substring, check that it contains all strings in lstr
 - Print out the smallest one
 
-Complexity: depend on the number of substrings which is O(n^2)
+Complexity: depend on the number of substrings which is O(n^2), where n is the length of 
+str (since the number of substring with the length m is (n - m) + 1), then if finding each 
+substring is O(n), the complexity is O(n^3)
+
 
 2. Efficient solution
 
-- Find the first occurence of substrings containing str1, str2, and str3, called sub, 
-record the lenght of it, sub_len (note, sub_len consists of the first index and the last 
-index, len = last index - fist index + 1)
+- Find the first occurence of a substring of str containing all strings in lstr
+- If there exists one, store its length. Then create a new string from str by removing 
+the first character, called str1. If it is empty, return. Otherwise find the first 
+occurence of a substring of str1.
 
-- (*) Find from the last index of sub to the end of str the first occurence of the left most 
-substring (str1, str2 or str3)
-
-- If there is a match, sub = sub new string from the fist index of sub to the last index 
-of the matching string. Find the last occurence of substring containing str1, str2, and 
-str3 in sub. Update sub = new matching substring. 
-
-- Compare the length of this new substring with sub_len, if it is smaller then update 
-sub_len. 
-
-- Go back to (*) 
-
-- Return sub_len  
+The complexity is O(n^2) where n is the length of str
