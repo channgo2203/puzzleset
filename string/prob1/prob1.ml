@@ -167,12 +167,12 @@ let rec find_shortest_substrings_aux n lshortest_substr str lstr offset =
 			(* find forward a substring containing the strings in lstr *)
 			let substr_index = sub_lstr str lstr in 
 			if (substr_index = (-1, -1)) then 
-				(* not found, find in string without the first character *)
-				find_shortest_substrings_aux n lshortest_substr (String.sub str 1 (String.length str - 1)) lstr (offset + 1)
+				(* not found return the result *)
+				(n, lshortest_substr)
 			else 
-				(* find in string without the first character with updated lshortest_substr *)
+				(* updated lshortest_substr an find the next substring from fi + 1 to the end of str *)
 				let fi, li = substr_index in 
-				find_shortest_substrings_aux (n + 1) (update_lshortest_substr lshortest_substr (fi + offset, li + offset)) (String.sub str 1 (String.length str - 1)) lstr (offset + 1)
+				find_shortest_substrings_aux (n + 1) (update_lshortest_substr lshortest_substr (fi + offset, li + offset)) (String.sub str (fi + 1) (String.length str - (fi + 1))) lstr (offset + fi + 1)
 		end
 
 let find_shortest_substrings str list_strings = 
@@ -192,7 +192,8 @@ let find_shortest_substrings str list_strings =
 					(0, [(-1,-1)])
 				else 
 					begin
-						let (n, lshortest_substr) = find_shortest_substrings_aux 1 [substr_index] (String.sub str 1 (String.length str - 1)) lstr 1 in 
+						let fi, li = substr_index in 
+						let (n, lshortest_substr) = find_shortest_substrings_aux 1 [substr_index] (String.sub str (fi + 1) (String.length str - (fi + 1))) lstr (fi + 1) in 
 						(* remove all duplicates before return *)
 						(n, List.dedup ~compare:(index_compare) lshortest_substr)
 					end

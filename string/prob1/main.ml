@@ -36,7 +36,7 @@ let _ =
 						printf "Cannot find any substring\n"
 					end else begin 
 						printf "-------------------------------\n";
-						printf "Number of substrings:\n%i\n" n;
+						printf "Number of substrings such that leftmost and rightmost substrings are in lstr:\n%i\n" n;
 						printf "-------------------------------\n";
 						print_lindex "Shortest substrings indices:" lshortest_substr_index;
 						print_lstr_index "Shortest substrings:" str lshortest_substr_index

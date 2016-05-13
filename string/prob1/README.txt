@@ -21,4 +21,5 @@ substring is O(n), the complexity is O(n^3)
 - Create a new string from str from the index of the character after the first character of substr,called str1. If it is empty, return the list. Otherwise find the first occurence of a substring of str1 that contains all strings in lstr
 - Repeat the steps above
 
-The complexity is O(nm) where m is number of substrings containing all strings in lstr and n is the length of str
+The complexity is nm where m is number of substrings containing all strings in lstr such that its leftmost rightmost substrings are strings in lstr, 
+and n is the length of str. In the worst-case, it is O(n^2)
