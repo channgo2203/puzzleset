@@ -28,4 +28,4 @@ Repeat the steps above.
 
 Complexity
 
-The complexity is nmnm where mm is number of substrings containing all strings in lstr such that its leftmost and rightmost substrings are strings in lstr, and nn is the length of str. In the worst-case, it is O(n2)O(n2) when str is string of same characters and lstr is list of this single character strings.
+The complexity is nmnm where mm is number of substrings containing all strings in lstr such that its leftmost and rightmost substrings are strings in lstr, and nn is the length of str. In the worst-case, it is O(n2) when str is string of same characters and lstr is list of this single character strings.
